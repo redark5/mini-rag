@@ -1,8 +1,12 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
+load_dotenv(".env")  # Load environment variables from .env file
+
+from routes import base
+
+
+
 app = FastAPI()
+app.include_router(base.base_router)
 
-@app.get("/welcome")
-# uvicorn main:app --reload --host 0.0.0.0 --port 8000
-
-def welcome():
-    return {"message": "Welcome to mini-rag!"}
+# uvicorn main:base_router --reload
