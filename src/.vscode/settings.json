@@ -1,7 +1,4 @@
 {
-    "python.analysis.extraPaths": [
-        "./src"
-    ],
     "serverpulse.ai.enabled": true,
     "serverpulse.ai.optInShown": true
 }
