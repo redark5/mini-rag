@@ -32,8 +32,10 @@ async def upload_data(project_id: str, file: UploadFile, app_settings: settings 
               content={"signal": result_signal
             }
         )
+        #logger.warning(f"File validation failed: {result_signal}")
+
     project_dir_path = ProjectController().get_project_path(project_id=project_id)
-    file_path = data_controller.generate_file_name(
+    file_path , file_id = data_controller.generate_Unique_filepath(
         orig_file_name=file.filename,
         project_id=project_id
     )
@@ -43,7 +45,7 @@ async def upload_data(project_id: str, file: UploadFile, app_settings: settings 
                 await f.write(chunk)
     except Exception as e:
         logger.error(f"Error uploading file: {e}")
-        
+
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={"signal": ResponseSignal.FILE_UPLOAD_FAILED.value, "error": str(e)}
@@ -51,5 +53,5 @@ async def upload_data(project_id: str, file: UploadFile, app_settings: settings 
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,
-        content={"signal": ResponseSignal.FILE_UPLOAD_SUCCESS.value, "file_path": file_path}
+        content={"signal": ResponseSignal.FILE_UPLOAD_SUCCESS.value, "file_id": file_id}
     )
