@@ -8,6 +8,8 @@ class ResponseSignal(Enum):
     FILE_SIZE_EXEEDED = "File size exceeds the maximum limit."
     FILE_UPLOAD_SUCCESS = "File is valid."
     FILE_UPLOAD_FAILED = "File is Failed."
+    FILE_PROCESSING_FAILED = "File processing failed."
+    FILE_PROCESSED_SUCCESS = "File processed successfully."
 
 
      
